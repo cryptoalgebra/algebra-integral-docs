@@ -1,3 +1,2 @@
-# ❌ Intro
+# ⚠ Intro
 
-Plugins

@@ -1,2 +1,2 @@
-# ❌ Interaction with pools
+# ⚠ Interaction with pools
 

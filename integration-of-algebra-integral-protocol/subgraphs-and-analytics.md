@@ -1,2 +1,2 @@
-# ❌ Subgraphs and analytics
+# ⚠ Subgraphs and analytics
 
