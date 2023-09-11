@@ -27,4 +27,4 @@
 
 ***
 
-* [⚠ Changelog](changelog.md)
+* [Changes after V1](changes-after-v1.md)
