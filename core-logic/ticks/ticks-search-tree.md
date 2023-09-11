@@ -37,7 +37,7 @@ The root of the tree is also a bitmap and contains information about the words o
 
 The corresponding bit at the root is 1 if the corresponding second-level word has at least one active bit.
 
-The maximum allowed tick is **88727272**
+The maximum allowed tick is **887272**
 
 The minimum allowed tick is -**887272**.
 
