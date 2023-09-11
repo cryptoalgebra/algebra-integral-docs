@@ -8,6 +8,7 @@
 * [⚠ Interaction with pools](integration-of-algebra-integral-protocol/interaction-with-pools.md)
 * [⚠ Subgraphs and analytics](integration-of-algebra-integral-protocol/subgraphs-and-analytics.md)
 * [⚠ Guides](integration-of-algebra-integral-protocol/guides.md)
+* [Migration from UniswapV3](integration-of-algebra-integral-protocol/migration-from-uniswapv3.md)
 
 ## Core logic
 

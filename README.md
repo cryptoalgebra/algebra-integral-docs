@@ -10,8 +10,5 @@ This documentation is dedicated to the new version of Algebra - Algebra Integral
 
 [Plugins](broken-reference) - section devoted to the development of plugins for Algebra Integral.
 
-[Changelog](changes-after-v1.md) - brief description of key differences from Algebra V1.
+[Changes after V1](changes-after-v1.md) - brief description of key differences from Algebra V1.
 
-
-
-**At the moment, work is underway to enhance and expand the documentation.**  Incomplete pages are marked with :warning:
