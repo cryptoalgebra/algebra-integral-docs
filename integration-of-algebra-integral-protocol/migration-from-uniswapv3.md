@@ -85,7 +85,7 @@ Unlike UniswapV3, tickspacing in Algebra Integral is not an immutable value: it 
 
 ### Changeable fee
 
-Unlike UniswapV3, fуу in Algebera Integral pools is not an immutable value: it can change. The fee value can be changed by the governance, or, if there is an appropriate plugin connected, it can be subject to the rules of the dynamic fee.
+Unlike UniswapV3, fee in Algebera Integral pools is not an immutable value: it can change. The fee value can be changed by the governance, or, if there is an appropriate plugin connected, it can be subject to the rules of the dynamic fee.
 
 Pool exposes `fee()` getter function which should return the current fee value at the moment. If a plugin with dynamic fee is used, this method will request the current value from that plugin.
 
