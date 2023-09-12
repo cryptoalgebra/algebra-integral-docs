@@ -5,7 +5,8 @@
 ## Integration of Algebra Integral protocol
 
 * [Specification and description of contracts](integration-of-algebra-integral-protocol/specification-and-description-of-contracts.md)
-* [Interaction with pools](integration-of-algebra-integral-protocol/interaction-with-pools.md)
+* [Interaction with pools](integration-of-algebra-integral-protocol/interaction-with-pools/README.md)
+  * [Getting data from pools](integration-of-algebra-integral-protocol/interaction-with-pools/getting-data-from-pools.md)
 * [⚠ Subgraphs and analytics](integration-of-algebra-integral-protocol/subgraphs-and-analytics.md)
 * [⚠ Guides](integration-of-algebra-integral-protocol/guides.md)
 * [Migration from UniswapV3](integration-of-algebra-integral-protocol/migration-from-uniswapv3.md)

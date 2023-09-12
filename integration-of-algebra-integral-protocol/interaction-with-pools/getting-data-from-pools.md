@@ -1,22 +1,14 @@
-# Interaction with pools
+# Getting data from pools
 
-This section provides the most frequently asked information that is needed when integrating Algebra Integral liquidity pools.
-
-<mark style="color:orange;">It's important to note that interacting directly with pools is a low-level activity - the caller must implement some security checks themselves. For most users, it makes sense to just use Algebra's standard peripheral contracts.</mark>
-
-
-
-## Getting data from pools
-
-#### How to determine which token is token0 and which is token1?
+## How to determine which token is token0 and which is token1?
 
 The order of the tokens is determined in such a way that:
 
 &#x20;`address(token0) < address(token1)`
 
-### Price
+## Price
 
-#### How to get current price in pool?
+### How to get current price in pool?
 
 Information about the current instant price of the tokens in pool is in the `globalState` structure:
 
@@ -56,15 +48,15 @@ price_instant = (price_pool / 2**96)**2
 
 Further, if you need to bring the price to a human-readable form, it is necessary to take into account the difference in token decimals, if any.
 
-#### Can i use "price" value in pool as real price?
+### Can i use "price" value in pool as real price?
 
 Shortly: <mark style="color:red;">**no**</mark>, you should not rely on this raw value for anything other than internal pool calculations. This value in the pool reflects only its internal state at the current moment in time, can change and is subject to manipulation using swaps. In addition, when swapping, the actual execution price will differ from this value due to price impact and fee charged.&#x20;
 
-To get the real price of the swap, see the paragraph [**How to get actual execution price for swap?**](interaction-with-pools.md#how-to-get-actual-execution-price-for-swap)
+To get the real price of the swap, see the paragraph [**How to get actual execution price for swap?**](getting-data-from-pools.md#how-to-get-actual-execution-price-for-swap)
 
 If you need to get the average price in a pool for a certain period of time, then for this you can use data from a plugin with a TWAP-oracle, **if it is connected to the pool**.
 
-#### How to get actual execution price for swap?
+### How to get actual execution price for swap?
 
 To do this, you can use a special peripheral contract called Quoter. For example, here is description of `quoteExactInputSingle`:
 
