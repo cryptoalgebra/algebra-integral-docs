@@ -16,7 +16,7 @@ Where $$X, Y$$ – “token reserves”, $$K$$ - constant. Tokens are convention
 
 Uniswap V3 transformed the system to a new form. While preserving the basic invariant, two new values are introduced:
 
-$$\sqrt P$$ is the root of the current price of token1 relative to token0. In the limiting case, at infinitesimal values, it reduces to $$\sqrt {\Delta Y / \Delta X}$$.
+$$\sqrt P$$ is the root of the current price of token0 relative to token1. In the limit, at infinitesimal values, it reduces to $$\sqrt {\Delta Y / \Delta X}$$.
 
 $$L$$ is [liquidity](liquidity-and-positions.md)
 
