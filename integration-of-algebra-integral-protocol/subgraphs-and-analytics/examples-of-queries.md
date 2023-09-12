@@ -6,7 +6,7 @@ This doc will teach you how to query Algebra analytics by writing GraphQL querie
 * [current liquidity of a pool](examples-of-queries.md#pool-data)
 * [volume on a certain day](examples-of-queries.md#historical-global-data)
 
-and much more. Below are some example queries. To run a query copy and paste it into the [algebra explorer](https://thegraph.com/hosted-service/subgraph/cryptoalgebra/algebra) to get fresh data.
+and much more. Below are some example queries. To run a query copy and paste it into the [algebra explorer](https://graph.testnet.mantle.xyz/subgraphs/name/cryptoalgebra/swapsicle-analytics-v1) to get fresh data.
 
 ## Explore
 
@@ -20,7 +20,7 @@ Global data refers to data points about the Algebra protocol as a whole. Some ex
 
 ### Current Global Data
 
-An example querying total pool count, transaction count, and total volume in USD and Matic:
+An example querying total pool count, transaction count, and total volume in USD and native token:
 
 ```graphql
 {
