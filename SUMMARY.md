@@ -8,7 +8,11 @@
 * [Interaction with pools](integration-of-algebra-integral-protocol/interaction-with-pools/README.md)
   * [Getting data from pools](integration-of-algebra-integral-protocol/interaction-with-pools/getting-data-from-pools.md)
 * [⚠ Subgraphs and analytics](integration-of-algebra-integral-protocol/subgraphs-and-analytics.md)
-* [⚠ Guides](integration-of-algebra-integral-protocol/guides.md)
+* [Technical guides](integration-of-algebra-integral-protocol/technical-guides/README.md)
+  * [Intro](integration-of-algebra-integral-protocol/technical-guides/intro.md)
+  * [Swaps](integration-of-algebra-integral-protocol/technical-guides/swaps.md)
+  * [Providing liquidity](integration-of-algebra-integral-protocol/technical-guides/providing-liquidity.md)
+  * [Flashloans](integration-of-algebra-integral-protocol/technical-guides/flashloans.md)
 * [Migration from UniswapV3](integration-of-algebra-integral-protocol/migration-from-uniswapv3.md)
 
 ## Core logic
