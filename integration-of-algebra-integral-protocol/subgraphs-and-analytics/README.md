@@ -5,6 +5,8 @@ title: Subgraphs and analytics
 
 # Subgraphs and analytics
 
+## Introduction
+
 This section is devoted to obtaining data about an instance of the Algebra Integral protocol from the corresponding indexer (The Graph procotol subgraphs).
 
 This page describes the entity schemas in a subgraph.&#x20;

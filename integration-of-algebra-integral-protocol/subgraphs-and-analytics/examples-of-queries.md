@@ -8,17 +8,17 @@ This doc will teach you how to query Algebra analytics by writing GraphQL querie
 
 and much more. Below are some example queries. To run a query copy and paste it into the [algebra explorer](https://thegraph.com/hosted-service/subgraph/cryptoalgebra/algebra) to get fresh data.
 
-### Explore
+## Explore
 
 All queries will be presented using our partner Swapsicle on mantle testnet as an example
 
 * Graphql Endpoint: https://graph.testnet.mantle.xyz/subgraphs/name/cryptoalgebra/swapsicle-analytics-v1
 
-### Global Data
+## Global Data
 
 Global data refers to data points about the Algebra protocol as a whole. Some examples of global data points are total value locked in the protocol, total pools deployed, or total transaction counts. Thus, to query global data you must pass in the Algebra Factory address `0x2209c0bccBDd1f750750023ba2bAcdC82D031EbE` and select the desired fields. Reference the full [factory schema](./#factory-entity) to see all possible fields.
 
-#### Current Global Data
+### Current Global Data
 
 An example querying total pool count, transaction count, and total volume in USD and Matic:
 
@@ -33,7 +33,7 @@ An example querying total pool count, transaction count, and total volume in USD
 }
 ```
 
-#### Historical Global Data
+### Historical Global Data
 
 You can also query historical data by specifying a block number.
 
@@ -63,11 +63,11 @@ TheGraph cannot track entity changes by timestamp, only by block, so to convert 
 }
 ```
 
-### Pool Data
+## Pool Data
 
 To get data about a certain pool, pass in the pool address. Reference the full [pool schema](./#pool-entity) and adjust the query fields to retrieve the data points you want.
 
-#### General Pool Query
+### General Pool Query
 
 The query below returns the fee, spot price, and liquidity for the WMNT-USDC pool.
 
@@ -93,11 +93,11 @@ The query below returns the fee, spot price, and liquidity for the WMNT-USDC poo
 
 <mark style="color:orange;">⚠ All addresses must be in lower case</mark>
 
-#### All Possible Pools
+### All Possible Pools
 
 The maxiumum items you can query at once is 1000. Thus to get all possible pools, you can interate using the skip variable. To get pools beyond the first 1000 you can also set the skip as shown below.
 
-#### Skipping First 1000 Pools
+### Skipping First 1000 Pools
 
 This query sets the skip value and returns the first 10 responses after the first 1000.
 
@@ -117,7 +117,7 @@ This query sets the skip value and returns the first 10 responses after the firs
 }
 ```
 
-#### Creating a Skip Variable
+### Creating a Skip Variable
 
 This next query sets a skip variable. In your language and environment of choice you can then iterate through a loop, query to get 1000 pools each time, and continually adjust skip by 1000 until all pool responses are returned.
 
@@ -144,7 +144,7 @@ Note: This query will not work in the graph explorer and more resembles the stru
 
 ```
 
-#### Most Liquid Pools
+### Most Liquid Pools
 
 Retrieve the top 1000 most liquid pools. You can use this similar set up to orderBy other variables like number of swaps or volume.
 
@@ -156,7 +156,7 @@ Retrieve the top 1000 most liquid pools. You can use this similar set up to orde
 }
 ```
 
-#### Pool Daily Aggregated
+### Pool Daily Aggregated
 
 This query returns daily aggregated data for the first 10 days since the given timestamp for the WETH-USDC pool.
 
@@ -177,9 +177,9 @@ This query returns daily aggregated data for the first 10 days since the given t
 }
 ```
 
-### Swap Data
+## Swap Data
 
-#### General Swap Data
+### General Swap Data
 
 To query data about a particular swap, input the transaction hash + "#" + the index in the swaps the transaction array. This is the reference for the full [swap schema](./#swap-entity).
 
@@ -212,7 +212,7 @@ This query fetches data about the sender, receiver, amounts, active liquidity of
  }
 ```
 
-#### Recent Swaps Within a Pool
+### Recent Swaps Within a Pool
 
 You can set the `where` field to filter swap data by pool address. This example fetches data about multiple swaps for the WETH-USDC pool, ordered by timestamp.
 
@@ -239,11 +239,11 @@ swaps(orderBy: timestamp, orderDirection: desc, where:
 }
 ```
 
-### Token Data
+## Token Data
 
 Input the token contract address to fetch token data. Any token that exists in at least one Algebra pool can be queried. The output will aggregate data across all pools that include the token.
 
-#### General Token Data
+### General Token Data
 
 This queries the decimals, symbol, name, pool count, and volume for the USDC token. Reference the full [token schema](./#token-entity) for all possible fields you can query.
 
@@ -259,7 +259,7 @@ This queries the decimals, symbol, name, pool count, and volume for the USDC tok
 }
 ```
 
-#### Token Daily Aggregated
+### Token Daily Aggregated
 
 You can fetch aggregate data about a specific token over a 24-hour period. This query gets 10-days of the 24-hour volume data for the ALGB token ordered from oldest to newest.
 
@@ -276,7 +276,7 @@ You can fetch aggregate data about a specific token over a 24-hour period. This 
 }
 ```
 
-#### All Tokens
+### All Tokens
 
 Similar to retrieving all pools, you can fetch all tokens by using skip. Note: This query will not work in the graph sandbox and more resembles the structure of a query you'd pass to some graphql middleware like Apollo.
 
@@ -290,9 +290,9 @@ query tokens($skip: Int!) {
 }
 ```
 
-### Position Data
+## Position Data
 
-#### General Position Data
+### General Position Data
 
 To get data about a specific position, input the NFT tokenId. This queries the collected fees for token0 and token1 and current liquidity for the position with tokedId 3. Reference the full [position schema](./#position-entity) to see all fields.
 
@@ -316,7 +316,7 @@ To get data about a specific position, input the NFT tokenId. This queries the c
 }
 ```
 
-#### Position pool data
+### Position pool data
 
 Since positions can be created not only via NonfungiblePositionManager, a poolPositions entity has been added which contains the basic information about the pool position.
 
