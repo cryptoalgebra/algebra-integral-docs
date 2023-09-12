@@ -7,7 +7,7 @@
 * [Specification and description of contracts](integration-of-algebra-integral-protocol/specification-and-description-of-contracts.md)
 * [Interaction with pools](integration-of-algebra-integral-protocol/interaction-with-pools/README.md)
   * [Getting data from pools](integration-of-algebra-integral-protocol/interaction-with-pools/getting-data-from-pools.md)
-* [⚠ Subgraphs and analytics](integration-of-algebra-integral-protocol/subgraphs-and-analytics.md)
+* [Subgraphs and analytics](integration-of-algebra-integral-protocol/subgraphs-and-analytics.md)
 * [Technical guides](integration-of-algebra-integral-protocol/technical-guides/README.md)
   * [Intro](integration-of-algebra-integral-protocol/technical-guides/intro.md)
   * [Swaps](integration-of-algebra-integral-protocol/technical-guides/swaps.md)
