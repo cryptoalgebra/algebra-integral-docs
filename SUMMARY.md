@@ -30,7 +30,7 @@
 
 ## Plugins
 
-* [⚠ Intro](plugins/intro.md)
+* [Intro](plugins/intro.md)
 
 ***
 
