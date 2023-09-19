@@ -1,4 +1,7 @@
-# Collecting fees
+---
+ID: "0"
+title: "Collecting fees"
+---
 
 ## Collect Fees
 

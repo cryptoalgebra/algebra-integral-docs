@@ -1,4 +1,7 @@
-# Decrease liquidity
+---
+ID: "1"
+title: "Decrease liquidity"
+---
 
 - Make sure to go through the first guide before continuing to this section.
 

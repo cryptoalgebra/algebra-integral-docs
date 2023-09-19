@@ -1,4 +1,7 @@
-# Set up your contract
+---
+ID: "4"
+title: "Set up your contract"
+---
 
 ## Setting up the Contract
 

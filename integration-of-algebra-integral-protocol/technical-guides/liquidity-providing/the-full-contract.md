@@ -1,4 +1,7 @@
-# The full contract
+---
+ID: "5"
+title: "The full contract"
+---
 
 Below we give an example of a fully functioning code: a contract that can custody the Algebra NFT positions and manipulate positions and liquidity in them by charging fees, increasing or decreasing liquidity and creating new positions.
 

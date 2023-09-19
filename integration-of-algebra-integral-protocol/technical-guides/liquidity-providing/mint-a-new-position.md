@@ -1,4 +1,7 @@
-# Mint a new position
+---
+ID: "3"
+title: "Mint a new position"
+---
 
 ## Input Parameters
 

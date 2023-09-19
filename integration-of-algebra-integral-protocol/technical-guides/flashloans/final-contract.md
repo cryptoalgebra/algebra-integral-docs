@@ -1,4 +1,8 @@
-#  The Final Contract
+---
+ID: "1"
+title: "The Final Contract"
+---
+
 
 ## The Full Contract
 

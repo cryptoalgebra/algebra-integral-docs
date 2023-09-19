@@ -1,4 +1,7 @@
-# Single swaps
+---
+ID: "1"
+title: "Single swaps"
+---
 
 Swaps are the most common interaction with the Algebra Protocol. The following example displays the way of implementing a single-path swap contract that uses two functions that you create:
 
