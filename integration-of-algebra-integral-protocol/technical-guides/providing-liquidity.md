@@ -1,3 +1,0 @@
-# Providing liquidity
-
-WIP
