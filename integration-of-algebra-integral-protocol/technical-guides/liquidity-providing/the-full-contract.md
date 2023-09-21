@@ -7,14 +7,14 @@ Below we give an example of a fully functioning code: a contract that can custod
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
+pragma solidity =0.8.20;
 pragma abicoder v2;
 
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPool.sol';
-import '@cryptoalgebra/core/contracts/libraries/TickMath.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/TransferHelper.sol';
-import '@cryptoalgebra/periphery/contracts/interfaces/INonfungiblePositionManager.sol';
-import '@cryptoalgebra/periphery/contracts/base/LiquidityManagement.sol';
+import '@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol';
+import '@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
+import '@cryptoalgebra/integral-periphery/contracts/interfaces/INonfungiblePositionManager.sol';
+import '@cryptoalgebra/integral-periphery/contracts/base/LiquidityManagement.sol';
 import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
 
 contract LiquidityExamples is IERC721Receiver {

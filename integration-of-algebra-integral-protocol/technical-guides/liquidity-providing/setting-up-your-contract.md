@@ -9,20 +9,20 @@ First, declare the solidity version used to compile the contract and `abicoder v
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
+pragma solidity =0.8.20;
 pragma abicoder v2;
 ```
 
 After that, import the contracts needed from the npm package installation.
 
 ```solidity
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPool.sol';
-import '@cryptoalgebra/core/contracts/libraries/TickMath.sol';
+import '@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol';
+import '@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol';
 import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
-import '@cryptoalgebra/periphery/contracts/interfaces/ISwapRouter.sol';
-import '@cryptoalgebra/periphery/contracts/interfaces/INonfungiblePositionManager.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/TransferHelper.sol';
-import '@cryptoalgebra/periphery/contracts/base/LiquidityManagement.sol';
+import '@cryptoalgebra/integral-periphery/contracts/interfaces/ISwapRouter.sol';
+import '@cryptoalgebra/integral-periphery/contracts/interfaces/INonfungiblePositionManager.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
+import '@cryptoalgebra/integral-periphery/contracts/base/LiquidityManagement.sol';
 ```
 
 Then, create a contract called `LiquidityExamples` and inherit both `IERC721Receiver` and `LiquidityManagement`.
@@ -116,14 +116,14 @@ To add a `Deposit` instance to the `deposits` mapping, create an internal functi
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
+pragma solidity =0.8.20;
 pragma abicoder v2;
 
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPool.sol';
-import '@cryptoalgebra/core/contracts/libraries/TickMath.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/TransferHelper.sol';
-import '@cryptoalgebra/periphery/contracts/interfaces/INonfungiblePositionManager.sol';
-import '@cryptoalgebra/periphery/contracts/base/LiquidityManagement.sol';
+import '@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol';
+import '@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
+import '@cryptoalgebra/integral-periphery/contracts/interfaces/INonfungiblePositionManager.sol';
+import '@cryptoalgebra/integral-periphery/contracts/base/LiquidityManagement.sol';
 import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
 
 contract LiquidityExamples is IERC721Receiver {

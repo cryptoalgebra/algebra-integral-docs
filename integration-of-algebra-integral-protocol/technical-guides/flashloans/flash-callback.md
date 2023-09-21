@@ -104,8 +104,8 @@ uint256 amountOut1 =
 To pay the original pool back for the flash transaction, calculate the balance due to it in the first place, and then approve the router to transfer the tokens in our contract back to the pool.
 
 ```solidity
-uint256 amount0Owed = LowGasSafeMath.add(decoded.amount0, fee0);
-uint256 amount1Owed = LowGasSafeMath.add(decoded.amount1, fee1);
+uint256 amount0Owed = decoded.amount0 + fee0;
+uint256 amount1Owed = decoded.amount1 + fee1;
 
 TransferHelper.safeApprove(token0, address(this), amount0Owed);
 TransferHelper.safeApprove(token1, address(this), amount1Owed);
@@ -126,14 +126,14 @@ Send the profits to the `payer`: the original `msg.sender` of the `initFlash` fu
 
 ```solidity
     if (amountOut0 > amount0Owed) {
-            uint256 profit0 = LowGasSafeMath.sub(amountOut0, amount0Owed);
+            uint256 profit0 = amountOut0 - amount0Owed;
 
             TransferHelper.safeApprove(token0, address(this), profit0);
             pay(token0, address(this), decoded.payer, profit0);
         }
 
     if (amountOut1 > amount1Owed) {
-            uint256 profit1 = LowGasSafeMath.sub(amountOut1, amount1Owed);
+            uint256 profit1 = amountOut1 - amount1Owed;
             TransferHelper.safeApprove(token0, address(this), profit1);
             pay(token1, address(this), decoded.payer, profit1);
         }
@@ -158,8 +158,8 @@ Send the profits to the `payer`: the original `msg.sender` of the `initFlash` fu
 
         // profitable check
         // exactInputSingle will fail if this amount not met
-        uint256 amount1Min = LowGasSafeMath.add(decoded.amount1, fee1);
-        uint256 amount0Min = LowGasSafeMath.add(decoded.amount0, fee0);
+        uint256 amount1Min = decoded.amount1 + fee1;
+        uint256 amount0Min = decoded.amount0 + fee0;
 
         // call exactInputSingle for swapping token1 for token0
         uint256 amountOut0 =
@@ -190,8 +190,8 @@ Send the profits to the `payer`: the original `msg.sender` of the `initFlash` fu
             );
 
         // end up with amountOut0 of token0 from first swap and amountOut1 of token1 from second swap
-        uint256 amount0Owed = LowGasSafeMath.add(decoded.amount0, fee0);
-        uint256 amount1Owed = LowGasSafeMath.add(decoded.amount1, fee1);
+        uint256 amount0Owed = decoded.amount0 + fee0;
+        uint256 amount1Owed = decoded.amount1 + fee1;
 
         TransferHelper.safeApprove(token0, address(this), amount0Owed);
         TransferHelper.safeApprove(token1, address(this), amount1Owed);
@@ -201,13 +201,13 @@ Send the profits to the `payer`: the original `msg.sender` of the `initFlash` fu
 
         // if profitable pay profits to payer
         if (amountOut0 > amount0Owed) {
-            uint256 profit0 = LowGasSafeMath.sub(amountOut0, amount0Owed);
+            uint256 profit0 = amountOut0 + amount0Owed;
 
             TransferHelper.safeApprove(token0, address(this), profit0);
             pay(token0, address(this), decoded.payer, profit0);
         }
         if (amountOut1 > amount1Owed) {
-            uint256 profit1 = LowGasSafeMath.sub(amountOut1, amount1Owed);
+            uint256 profit1 = amountOut1 + amount1Owed;
             TransferHelper.safeApprove(token0, address(this), profit1);
             pay(token1, address(this), decoded.payer, profit1);
         }

@@ -55,12 +55,12 @@ For the next step, we’ll use NPM to add the Algebra contracts, which will allo
 $ npm add @cryptoalgebra/periphery @cryptoalgebra/core
 ```
 
-The Algebra contracts were written using a past version of the solidity compiler. Since we’re building integrations using the Algebra codebase, we have to make Hardhat to use the correct compiler to build these files. Go to the `./hardhat.config.js` file and change the Solidity version to “0.7.6”: 
+The Algebra contracts were written using a past version of the solidity compiler. Since we’re building integrations using the Algebra codebase, we have to make Hardhat to use the correct compiler to build these files. Go to the `./hardhat.config.js` file and change the Solidity version to “0.8.20”: 
 
 ```jsx
 // ...
 module.exports = {
-  solidity: "0.7.6",
+  solidity: "0.8.20",
 };
 ```
 
@@ -74,11 +74,11 @@ To make sure that our environment is set up correctly, we’ll try to compile a 
 
 ```jsx
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
+pragma solidity =0.8.20;
 pragma abicoder v2;
 
-import '@cryptoalgebra/periphery/contracts/interfaces/ISwapRouter.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/TransferHelper.sol';
+import '@cryptoalgebra/integral-periphery/contracts/interfaces/ISwapRouter.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
 
 contract SimpleSwap {
     ISwapRouter public immutable swapRouter;

@@ -3,29 +3,25 @@ ID: "3"
 title: "The Final Contract"
 ---
 
-
 ## The Full Contract
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
-pragma solidity =0.7.6;
+pragma solidity =0.8.20;
 pragma abicoder v2;
 
-import '@cryptoalgebra/core/contracts/interfaces/callback/IAlgebraFlashCallback.sol';
-import '@cryptoalgebra/core/contracts/libraries/LowGasSafeMath.sol';
+import '@cryptoalgebra/integral-core/contracts/interfaces/callback/IAlgebraFlashCallback.sol';
 
-import '@cryptoalgebra/periphery/contracts/base/PeripheryPayments.sol';
-import '@cryptoalgebra/periphery/contracts/base/PeripheryImmutableState.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/PoolAddress.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/CallbackValidation.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/TransferHelper.sol';
-import '@cryptoalgebra/periphery/contracts/interfaces/ISwapRouter.sol';
+import '@cryptoalgebra/integral-periphery/contracts/base/PeripheryPayments.sol';
+import '@cryptoalgebra/integral-periphery/contracts/base/PeripheryImmutableState.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/PoolAddress.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/CallbackValidation.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
+import '@cryptoalgebra/integral-periphery/contracts/interfaces/ISwapRouter.sol';
 
 /// @title Flash contract implementation
 /// @notice An example contract using the Algebra flash function
 contract PairFlash is IAlgebraFlashCallback, PeripheryImmutableState, PeripheryPayments {
-    using LowGasSafeMath for uint256;
-    using LowGasSafeMath for int256;
 
     ISwapRouter public immutable swapRouter;
 
@@ -58,8 +54,8 @@ contract PairFlash is IAlgebraFlashCallback, PeripheryImmutableState, PeripheryP
 
         // profitable check
         // exactInputSingle will fail if this amount not met
-        uint256 amount1Min = LowGasSafeMath.add(decoded.amount1, fee1);
-        uint256 amount0Min = LowGasSafeMath.add(decoded.amount0, fee0);
+        uint256 amount1Min = decoded.amount1 + fee1;
+        uint256 amount0Min = decoded.amount0 + fee0;
 
         // call exactInputSingle for swapping token1 for token0 in pool
         uint256 amountOut0 =
@@ -90,8 +86,8 @@ contract PairFlash is IAlgebraFlashCallback, PeripheryImmutableState, PeripheryP
             );
 
         // end up with amountOut0 of token0 from first swap and amountOut1 of token1 from second swap
-        uint256 amount0Owed = LowGasSafeMath.add(decoded.amount0, fee0);
-        uint256 amount1Owed = LowGasSafeMath.add(decoded.amount1, fee1);
+        uint256 amount0Owed = decoded.amount0 + fee0;
+        uint256 amount1Owed = decoded.amount1 + fee1;
 
         TransferHelper.safeApprove(token0, address(this), amount0Owed);
         TransferHelper.safeApprove(token1, address(this), amount1Owed);
@@ -101,13 +97,13 @@ contract PairFlash is IAlgebraFlashCallback, PeripheryImmutableState, PeripheryP
 
         // if profitable pay profits to payer
         if (amountOut0 > amount0Owed) {
-            uint256 profit0 = LowGasSafeMath.sub(amountOut0, amount0Owed);
+            uint256 profit0 = amountOut0 - amount0Owed;
 
             TransferHelper.safeApprove(token0, address(this), profit0);
             pay(token0, address(this), decoded.payer, profit0);
         }
         if (amountOut1 > amount1Owed) {
-            uint256 profit1 = LowGasSafeMath.sub(amountOut1, amount1Owed);
+            uint256 profit1 = amountOut1 - amount1Owed;
             TransferHelper.safeApprove(token0, address(this), profit1);
             pay(token1, address(this), decoded.payer, profit1);
         }

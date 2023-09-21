@@ -33,12 +33,10 @@ We can highlight three different, separate callback functions in Algebra. These 
 
 ## Inheriting The Algebra Contracts
 
-Inherit `IAlgebraFlashCallback` and `PeripheryPayments`, as we will use each of the above in our program. Note that these two inherited contracts already extend many of the other contracts we will be using in the future,such as LowGasSafeMath which we [attach](https://docs.soliditylang.org/en/v0.7.6/contracts.html?highlight=using#using-for), to types `uint256` and `int256`.
+Inherit `IAlgebraFlashCallback` and `PeripheryPayments`, as we will use each of the above in our program. Note that these two inherited contracts already extend many of the other contracts we will be using in the future.
 
 ```solidity
 contract PairFlash is IAlgebraFlashCallback, PeripheryPayments {
-    using LowGasSafeMath for uint256;
-    using LowGasSafeMath for int256;
 ```
 
 Declare an immutable public variable `swapRouter` of type `ISwapRouter`:
@@ -62,24 +60,21 @@ Declare the constructor here, which is executed once when the contract is deploy
 The full import section and contract declaration:
 
 ```solidity
-pragma solidity =0.7.6;
+pragma solidity =0.8.20;
 pragma abicoder v2;
 
-import '@cryptoalgebra/core/contracts/interfaces/callback/IAlgebraFlashCallback.sol';
-import '@cryptoalgebra/core/contracts/libraries/LowGasSafeMath.sol';
+import '@cryptoalgebra/integral-core/contracts/interfaces/callback/IAlgebraFlashCallback.sol';
 
-import '@cryptoalgebra/periphery/contracts/base/PeripheryPayments.sol';
-import '@cryptoalgebra/periphery/contracts/base/PeripheryImmutableState.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/PoolAddress.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/CallbackValidation.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/TransferHelper.sol';
-import '@cryptoalgebra/periphery/contracts/interfaces/ISwapRouter.sol';
+import '@cryptoalgebra/integral-periphery/contracts/base/PeripheryPayments.sol';
+import '@cryptoalgebra/integral-periphery/contracts/base/PeripheryImmutableState.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/PoolAddress.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/CallbackValidation.sol';
+import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
+import '@cryptoalgebra/integral-periphery/contracts/interfaces/ISwapRouter.sol';
 
 
 
 contract PairFlash is IAlgebraFlashCallback, PeripheryPayments {
-    using LowGasSafeMath for uint256;
-    using LowGasSafeMath for int256;
 
     ISwapRouter public immutable swapRouter;
 
