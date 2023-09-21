@@ -1,11 +1,9 @@
 ---
-ID: "4"
+ID: "0"
 title: "Set up your contract"
 ---
 
 ## Setting up the Contract
-
-This exact guide shows an example of custodial contract Algebra positions, meaning that we can interact with the Algebra Periphery by minting a position, adding more liquidity to an exact position, decreasing liquidity, and collecting commissions.
 
 First, declare the solidity version used to compile the contract and `abicoder v2` to allow arbitrary nested arrays and structs to be encoded and decoded in calldata, a feature that we use when transacting with a pool.
 
