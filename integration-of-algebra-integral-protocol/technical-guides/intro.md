@@ -52,7 +52,7 @@ After Hardhat has finished initializing, take a close look at what has been inst
 For the next step, we’ll use NPM to add the Algebra contracts, which will allow us to seamlessly integrate with the protocol in our new contracts:
 
 ```bash
-$ npm add @cryptoalgebra/periphery @cryptoalgebra/core
+$ npm add @cryptoalgebra/integral-periphery @cryptoalgebra/integral-core
 ```
 
 The Algebra contracts were written using a past version of the solidity compiler. Since we’re building integrations using the Algebra codebase, we have to make Hardhat to use the correct compiler to build these files. Go to the `./hardhat.config.js` file and change the Solidity version to “0.8.20”: 
