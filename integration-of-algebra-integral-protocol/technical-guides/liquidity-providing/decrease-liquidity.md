@@ -3,9 +3,7 @@ ID: "3"
 title: "Decrease liquidity"
 ---
 
-- Make sure to go through the first guide before continuing to this section.
-
-[First guide](./setting-up-your-contract.md)
+- Make sure to go through the [first guide](./setting-up-your-contract.md) before continuing to this section.
 
 Here we decrease the liquidity of our position without withdrawing all of it.
 

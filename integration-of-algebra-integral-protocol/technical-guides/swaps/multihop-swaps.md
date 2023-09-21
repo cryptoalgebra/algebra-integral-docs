@@ -53,8 +53,8 @@ Exact input multi hop swaps will swap a fixed amount on a given input token for 
 
 - `path`: The path is a sequence of (`tokenAddress - tokenAddress`), which are the variables needed to compute each pool contract address in our sequence of swaps. The multihop swap router code will automatically find the correct pool with these variables, and execute the swap needed within each pool in our sequence.
 - `recipient`: is the destination address of the outbound asset.
-- ``deadline`: is the unix time after which a transaction will be reverted, in order to protect against long delays and the increased chance of large price swings therein.
-- ``amountIn`: the amount of the inbound asset.
+- `deadline`: is the unix time after which a transaction will be reverted, in order to protect against long delays and the increased chance of large price swings therein.
+- `amountIn`: the amount of the inbound asset.
 - `amountOutMin`: the minimum amount of the outbound asset, less than which will cause the transaction to revert. For this example we will set it to 0, in production one will need to use the SDK to quote an expected price, or an on chain price oracle for more advanced manipulation resistant systems.
 
 ### Calling the function

@@ -5,9 +5,7 @@ title: "Increase Liquidity"
 
 ## Increase Liquidity Within The Current Range
 
-- Before getting into this section, take a closer look at the first guide to make sure that all the previous steps are completed correctly.
-
-[First guide](./setting-up-your-contract.md)
+- Before getting into this section, take a closer look at the [first guide](./setting-up-your-contract.md) to make sure that all the previous steps are completed correctly.
 
 - The example below implies that the contract already has custody of the NFT.
 

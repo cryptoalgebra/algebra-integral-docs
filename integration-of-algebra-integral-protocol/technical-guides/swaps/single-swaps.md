@@ -8,13 +8,9 @@ Swaps are the most common interaction with the Algebra Protocol. The following e
 - `swapExactInputSingle`
 - `swapExactOutputSingle`
 
-The `swapExactOutputSingle`  function is used for performing exact output swaps, which swap a minimum possible amount of the token 1 for a fixed amount of the token 2. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the ISwapRouter interface.
+The `swapExactOutputSingle`  function is used for performing exact output swaps, which swap a minimum possible amount of the token 1 for a fixed amount of the token 2. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the [ISwapRouter](https://docs.algebra.finance/en/docs/contracts/API-reference-v2.0/periphery/ISwapRouter) interface.
 
-[ISwapRouter](https://docs.algebra.finance/en/docs/contracts/API-reference/periphery/ISwapRouter) 
-
-The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the ISwapRouter interface.
-
-[ISwapRouter](https://docs.algebra.finance/en/docs/contracts/API-reference/periphery/ISwapRouter)
+The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the [ISwapRouter](https://docs.algebra.finance/en/docs/contracts/API-reference-v2.0/periphery/ISwapRouter) interface.
 
 To make it seem more simple, the example hardcodes the token contract addresses, but as explained below the contract could be modified to change pools and tokens on a per-transaction basis.
 
@@ -90,9 +86,7 @@ Then, transfer the `amount` of Dai from the calling address into our contract, a
 
 ### Swap Input Parameters
 
-To execute the swap function, we need to fill the `ExactInputSingleParams` with the necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed in ISwapRouter.
-
-[ISwapRouter](https://docs.algebra.finance/en/docs/contracts/API-reference/periphery/ISwapRouter)
+To execute the swap function, we need to fill the `ExactInputSingleParams` with the necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed in [ISwapRouter](https://docs.algebra.finance/en/docs/contracts/API-reference-v2.0/periphery/ISwapRouter).
 
 A little overview of the parameters:
 

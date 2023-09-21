@@ -70,7 +70,7 @@ Now, we’re done! After all these steps, you should have a functional developme
 
 To make sure that our environment is set up correctly, we’ll try to compile a basic Swap. For that purpose, create a new file, `./contracts/Swap.sol` and paste the following code into it.
 
-[Single Swaps Contract Guide](./swaps/single-swaps)
+[Single Swaps Contract Guide](./swaps/single-swaps.md)
 
 ```jsx
 // SPDX-License-Identifier: GPL-2.0-or-later

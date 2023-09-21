@@ -55,7 +55,7 @@ Set a minimum out amount for both upcoming swaps, so that the following swaps wi
 
 Call the first of two swaps, calling `exactInputSingle` on the router interface contract.
 
-[**Router interface contract**](https://docs.algebra.finance/en/docs/contracts/API-reference/periphery/ISwapRouter)
+[**Router interface contract**](https://docs.algebra.finance/en/docs/contracts/API-reference-v2.0/periphery/ISwapRouter)
 
 This time, we are using the previously declared `amount0In` as the minimum amount out, and assigning the returned balance of the swap to `amountOut0`.
 
