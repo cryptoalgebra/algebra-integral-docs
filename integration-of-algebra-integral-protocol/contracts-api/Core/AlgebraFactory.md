@@ -7,7 +7,7 @@ Algebra factory
 
 Is used to deploy pools and its plugins
 
-*Developer note: Version: Algebra Integral*
+*Version: Algebra Integral*
 
 **Inherits:** [IAlgebraFactory](interfaces/IAlgebraFactory.md) [Ownable2Step](https://docs.openzeppelin.com/contracts/4.x/) [AccessControlEnumerable](https://docs.openzeppelin.com/contracts/4.x/)
 
@@ -305,4 +305,104 @@ function renounceOwnership() public
 *Developer note: Leaves the contract without owner. It will not be possible to call &#x60;onlyOwner&#x60; functions anymore.
 Can only be called by the current owner if RENOUNCE_OWNERSHIP_DELAY seconds
 have passed since the call to the startRenounceOwnership() function.*
+
+## Events
+### RenounceOwnershipStart
+
+```solidity
+event RenounceOwnershipStart(uint256 timestamp, uint256 finishTimestamp)
+```
+
+Emitted when a process of ownership renounce is started
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| timestamp | uint256 | The timestamp of event |
+| finishTimestamp | uint256 | The timestamp when ownership renounce will be possible to finish |
+
+### RenounceOwnershipStop
+
+```solidity
+event RenounceOwnershipStop(uint256 timestamp)
+```
+
+Emitted when a process of ownership renounce cancelled
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| timestamp | uint256 | The timestamp of event |
+
+### RenounceOwnershipFinish
+
+```solidity
+event RenounceOwnershipFinish(uint256 timestamp)
+```
+
+Emitted when a process of ownership renounce finished
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| timestamp | uint256 | The timestamp of ownership renouncement |
+
+### Pool
+
+```solidity
+event Pool(address token0, address token1, address pool)
+```
+
+Emitted when a pool is created
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| token0 | address | The first token of the pool by address sort order |
+| token1 | address | The second token of the pool by address sort order |
+| pool | address | The address of the created pool |
+
+### DefaultCommunityFee
+
+```solidity
+event DefaultCommunityFee(uint16 newDefaultCommunityFee)
+```
+
+Emitted when the default community fee is changed
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| newDefaultCommunityFee | uint16 | The new default community fee value |
+
+### DefaultTickspacing
+
+```solidity
+event DefaultTickspacing(int24 newDefaultTickspacing)
+```
+
+Emitted when the default tickspacing is changed
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| newDefaultTickspacing | int24 | The new default tickspacing value |
+
+### DefaultFee
+
+```solidity
+event DefaultFee(uint16 newDefaultFee)
+```
+
+Emitted when the default fee is changed
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| newDefaultFee | uint16 | The new default fee value |
+
+### DefaultPluginFactory
+
+```solidity
+event DefaultPluginFactory(address defaultPluginFactoryAddress)
+```
+
+Emitted when the defaultPluginFactory address is changed
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| defaultPluginFactoryAddress | address | The new defaultPluginFactory address |
 

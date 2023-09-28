@@ -7,7 +7,7 @@ Algebra concentrated liquidity pool
 
 This contract is responsible for liquidity positions, swaps and flashloans
 
-*Developer note: Version: Algebra Integral*
+*Version: Algebra Integral*
 
 ## Modifiers
 ### onlyValidTicks
@@ -608,7 +608,7 @@ Called by the plugin if dynamic fee is enabled
 | newFee | uint16 | The new fee value |
 
 ## Errors
-## locked
+### locked
 
 ```solidity
 error locked()
@@ -617,7 +617,7 @@ error locked()
 
 Emitted by the reentrancy guard
 
-## arithmeticError
+### arithmeticError
 
 ```solidity
 error arithmeticError()
@@ -626,7 +626,7 @@ error arithmeticError()
 
 Emitted if arithmetic error occurred
 
-## alreadyInitialized
+### alreadyInitialized
 
 ```solidity
 error alreadyInitialized()
@@ -635,7 +635,7 @@ error alreadyInitialized()
 
 Emitted if an attempt is made to initialize the pool twice
 
-## notInitialized
+### notInitialized
 
 ```solidity
 error notInitialized()
@@ -644,7 +644,7 @@ error notInitialized()
 
 Emitted if an attempt is made to mint or swap in uninitialized pool
 
-## zeroAmountRequired
+### zeroAmountRequired
 
 ```solidity
 error zeroAmountRequired()
@@ -653,7 +653,7 @@ error zeroAmountRequired()
 
 Emitted if 0 is passed as amountRequired to swap function
 
-## invalidAmountRequired
+### invalidAmountRequired
 
 ```solidity
 error invalidAmountRequired()
@@ -662,7 +662,7 @@ error invalidAmountRequired()
 
 Emitted if invalid amount is passed as amountRequired to swap function
 
-## insufficientInputAmount
+### insufficientInputAmount
 
 ```solidity
 error insufficientInputAmount()
@@ -671,7 +671,7 @@ error insufficientInputAmount()
 
 Emitted if the pool received fewer tokens than it should have
 
-## zeroLiquidityDesired
+### zeroLiquidityDesired
 
 ```solidity
 error zeroLiquidityDesired()
@@ -680,7 +680,7 @@ error zeroLiquidityDesired()
 
 Emitted if there was an attempt to mint zero liquidity
 
-## zeroLiquidityActual
+### zeroLiquidityActual
 
 ```solidity
 error zeroLiquidityActual()
@@ -689,7 +689,7 @@ error zeroLiquidityActual()
 
 Emitted if actual amount of liquidity is zero (due to insufficient amount of tokens received)
 
-## flashInsufficientPaid0
+### flashInsufficientPaid0
 
 ```solidity
 error flashInsufficientPaid0()
@@ -698,7 +698,7 @@ error flashInsufficientPaid0()
 
 Emitted if the pool received fewer tokens0 after flash than it should have
 
-## flashInsufficientPaid1
+### flashInsufficientPaid1
 
 ```solidity
 error flashInsufficientPaid1()
@@ -707,7 +707,7 @@ error flashInsufficientPaid1()
 
 Emitted if the pool received fewer tokens1 after flash than it should have
 
-## invalidLimitSqrtPrice
+### invalidLimitSqrtPrice
 
 ```solidity
 error invalidLimitSqrtPrice()
@@ -716,7 +716,7 @@ error invalidLimitSqrtPrice()
 
 Emitted if limitSqrtPrice param is incorrect
 
-## tickIsNotSpaced
+### tickIsNotSpaced
 
 ```solidity
 error tickIsNotSpaced()
@@ -725,7 +725,7 @@ error tickIsNotSpaced()
 
 Tick must be divisible by tickspacing
 
-## notAllowed
+### notAllowed
 
 ```solidity
 error notAllowed()
@@ -734,7 +734,7 @@ error notAllowed()
 
 Emitted if a method is called that is accessible only to the factory owner or dedicated role
 
-## invalidNewTickSpacing
+### invalidNewTickSpacing
 
 ```solidity
 error invalidNewTickSpacing()
@@ -743,7 +743,7 @@ error invalidNewTickSpacing()
 
 Emitted if new tick spacing exceeds max allowed value
 
-## invalidNewCommunityFee
+### invalidNewCommunityFee
 
 ```solidity
 error invalidNewCommunityFee()
@@ -752,7 +752,7 @@ error invalidNewCommunityFee()
 
 Emitted if new community fee exceeds max allowed value
 
-## dynamicFeeActive
+### dynamicFeeActive
 
 ```solidity
 error dynamicFeeActive()
@@ -761,7 +761,7 @@ error dynamicFeeActive()
 
 Emitted if an attempt is made to manually change the fee value, but dynamic fee is enabled
 
-## dynamicFeeDisabled
+### dynamicFeeDisabled
 
 ```solidity
 error dynamicFeeDisabled()
@@ -770,7 +770,7 @@ error dynamicFeeDisabled()
 
 Emitted if an attempt is made by plugin to change the fee value, but dynamic fee is disabled
 
-## pluginIsNotConnected
+### pluginIsNotConnected
 
 ```solidity
 error pluginIsNotConnected()
@@ -779,7 +779,7 @@ error pluginIsNotConnected()
 
 Emitted if an attempt is made to change the plugin configuration, but the plugin is not connected
 
-## invalidHookResponse
+### invalidHookResponse
 
 ```solidity
 error invalidHookResponse(bytes4 expectedSelector)
@@ -792,7 +792,7 @@ Emitted if a plugin returns invalid selector after hook call
 | ---- | ---- | ----------- |
 | expectedSelector | bytes4 | The expected selector |
 
-## liquiditySub
+### liquiditySub
 
 ```solidity
 error liquiditySub()
@@ -801,7 +801,7 @@ error liquiditySub()
 
 Emitted if liquidity underflows
 
-## liquidityAdd
+### liquidityAdd
 
 ```solidity
 error liquidityAdd()
@@ -810,7 +810,7 @@ error liquidityAdd()
 
 Emitted if liquidity overflows
 
-## topTickLowerOrEqBottomTick
+### topTickLowerOrEqBottomTick
 
 ```solidity
 error topTickLowerOrEqBottomTick()
@@ -819,7 +819,7 @@ error topTickLowerOrEqBottomTick()
 
 Emitted if the topTick param not greater then the bottomTick param
 
-## bottomTickLowerThanMIN
+### bottomTickLowerThanMIN
 
 ```solidity
 error bottomTickLowerThanMIN()
@@ -828,7 +828,7 @@ error bottomTickLowerThanMIN()
 
 Emitted if the bottomTick param is lower than min allowed value
 
-## topTickAboveMAX
+### topTickAboveMAX
 
 ```solidity
 error topTickAboveMAX()
@@ -837,7 +837,7 @@ error topTickAboveMAX()
 
 Emitted if the topTick param is greater than max allowed value
 
-## liquidityOverflow
+### liquidityOverflow
 
 ```solidity
 error liquidityOverflow()
@@ -846,7 +846,7 @@ error liquidityOverflow()
 
 Emitted if the liquidity value associated with the tick exceeds MAX_LIQUIDITY_PER_TICK
 
-## tickIsNotInitialized
+### tickIsNotInitialized
 
 ```solidity
 error tickIsNotInitialized()
@@ -855,7 +855,7 @@ error tickIsNotInitialized()
 
 Emitted if an attempt is made to interact with an uninitialized tick
 
-## tickInvalidLinks
+### tickInvalidLinks
 
 ```solidity
 error tickInvalidLinks()
@@ -864,7 +864,7 @@ error tickInvalidLinks()
 
 Emitted if there is an attempt to insert a new tick into the list of ticks with incorrect indexes of the previous and next ticks
 
-## transferFailed
+### transferFailed
 
 ```solidity
 error transferFailed()
@@ -873,7 +873,7 @@ error transferFailed()
 
 Emitted if token transfer failed internally
 
-## tickOutOfRange
+### tickOutOfRange
 
 ```solidity
 error tickOutOfRange()
@@ -882,7 +882,7 @@ error tickOutOfRange()
 
 Emitted if tick is greater than the maximum or less than the minimum allowed value
 
-## priceOutOfRange
+### priceOutOfRange
 
 ```solidity
 error priceOutOfRange()
@@ -898,7 +898,7 @@ Emitted if price is greater than the maximum or less than the minimum allowed va
 event Initialize(uint160 price, int24 tick)
 ```
 
-Emitted exactly once by a pool when #initialize is first called on the pool
+Emitted exactly once by a pool when [#initialize](#initialize) is first called on the pool
 
 *Developer note: Mint/Burn/Swaps cannot be emitted by the pool before Initialize*
 
