@@ -4,15 +4,14 @@
 
 ## Integration of Algebra Integral protocol
 
-* [Specification and description of contracts](integration-of-algebra-integral-protocol/specification-and-description-of-contracts.md)
-* [Contracts API](integration-of-algebra-integral-protocol/contracts-api/README.md)
-  * [Algebra Pool](integration-of-algebra-integral-protocol/contracts-api/Core/AlgebraPool.md)
-  * [Algebra Factory](integration-of-algebra-integral-protocol/contracts-api/Core/AlgebraFactory.md)
-  * [Swap Router](integration-of-algebra-integral-protocol/contracts-api/Periphery/SwapRouter.md)
-  * [Nonfungible Position Manager](integration-of-algebra-integral-protocol/contracts-api/Periphery/NonfungiblePositionManager.md)
-  * [Quoter](integration-of-algebra-integral-protocol/contracts-api/Periphery/lens/Quoter.md)
-  * [QuoterV2](integration-of-algebra-integral-protocol/contracts-api/Periphery/lens/QuoterV2.md)
-  * [TickLens](integration-of-algebra-integral-protocol/contracts-api/Periphery/lens/TickLens.md)
+* [Specification and API of contracts](integration-of-algebra-integral-protocol/specification-and-description-of-contracts/README.md)
+  * [Algebra Pool](integration-of-algebra-integral-protocol/specification-and-description-of-contracts/algebrapool.md)
+  * [Algebra Factory](integration-of-algebra-integral-protocol/specification-and-description-of-contracts/algebrafactory.md)
+  * [Swap Router](integration-of-algebra-integral-protocol/specification-and-description-of-contracts/swaprouter.md)
+  * [Nonfungible Position Manager](integration-of-algebra-integral-protocol/specification-and-description-of-contracts/nonfungiblepositionmanager.md)
+  * [Quoter](integration-of-algebra-integral-protocol/specification-and-description-of-contracts/quoter.md)
+  * [QuoterV2](integration-of-algebra-integral-protocol/specification-and-description-of-contracts/quoterv2.md)
+  * [TickLens](integration-of-algebra-integral-protocol/specification-and-description-of-contracts/ticklens.md)
 * [Interaction with pools](integration-of-algebra-integral-protocol/interaction-with-pools/README.md)
   * [Getting data from pools](integration-of-algebra-integral-protocol/interaction-with-pools/getting-data-from-pools.md)
 * [Subgraphs and analytics](integration-of-algebra-integral-protocol/subgraphs-and-analytics/README.md)
