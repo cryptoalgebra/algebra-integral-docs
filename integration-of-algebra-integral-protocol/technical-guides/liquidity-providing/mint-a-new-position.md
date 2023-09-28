@@ -1,9 +1,11 @@
 ---
-ID: "1"
-title: "Mint a new position"
+ID: '1'
+title: Mint a new position
 ---
 
-## Input Parameters
+# Mint a new position
+
+### Input Parameters
 
 To mint a new position, we use the `nonFungiblePositionManager` and call `mint`.
 
@@ -30,17 +32,14 @@ For this exact example, we’re hard-coding the token amounts to be minted. In p
         uint256 amount1ToMint = 1000;
 ```
 
-## Calling Mint
+### Calling Mint
 
-Here we approve the `nonfungiblePositionManager` to use the contracts' tokens, then populate the `MintParamsv struct and assign it to a local variable `params` that will be passed to the `nonfungiblePositionManager` when we call `mint`.
+Here we approve the `nonfungiblePositionManager` to use the contracts' tokens, then populate the `MintParams` struct and assign it to a local variable params that will be passed to the `nonfungiblePositionManager` when we call `mint`.
 
-- By using `TickMath.MIN_TICK` and `TickMath.MAX_TICK`, we are providing liquidity across the whole pool’s range. In production, you may want to specify a more concentrated position.
-
-- We set `amount0Min` and `amount1Min` to zero for the example - but this would be a vulnerability in production. A function calling `mint` with no slippage protection would be vulnerable to a front running attack designed to execute the `mint` call at an inaccurate price.
-
-- For more reliable practice, the developer needs to implement a slippage assessment process.
-
-- Note that this function will not initialize a pool where one does not yet exist.
+* By using `TickMath.MIN_TICK` and `TickMath.MAX_TICK`, we are providing liquidity across the whole pool’s range. In production, you may want to specify a more concentrated position.
+* We set `amount0Min` and `amount1Min` to zero for the example - but this would be a vulnerability in production. A function calling `mint` with no slippage protection would be vulnerable to a front running attack designed to execute the `mint` call at an inaccurate price.
+* For more reliable practice, the developer needs to implement a slippage assessment process.
+* Note that this function will not initialize a pool where one does not yet exist.
 
 ```solidity
         // Approve the position manager
@@ -66,9 +65,9 @@ Here we approve the `nonfungiblePositionManager` to use the contracts' tokens, t
 
 ```
 
-## Updating The Deposit Mapping And Refunding The Calling Address
+### Updating The Deposit Mapping And Refunding The Calling Address
 
-After the previous point, we can call the internal function we previously wrote in [Setting Up Your Contract](./setting-up-your-contract.md). After that, we can take any liquidity leftover from minting and refund it to `msg.sender`.
+After the previous point, we can call the internal function we previously wrote in [Setting Up Your Contract](setting-up-your-contract.md). After that, we can take any liquidity leftover from minting and refund it to `msg.sender`.
 
 ```solidity
         // Create a deposit
@@ -89,7 +88,7 @@ After the previous point, we can call the internal function we previously wrote 
     }
 ```
 
-## The Full Example
+### The Full Example
 
 ```solidity
     /// @notice Calls the mint function defined in periphery, mints the same amount of each token. For this example we are providing 1000 DAI and 1000 USDC in liquidity

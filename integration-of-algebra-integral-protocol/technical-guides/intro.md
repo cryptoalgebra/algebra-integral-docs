@@ -1,11 +1,12 @@
 # Intro
 
+## Intro
+
 In this step-by-step guide, we'll try to provide all the necessary pieces of information, hints, and tools for you to create a whole development environment, that you can further use to build the rest of the examples in the Guides section of the docs, or start your own project with our integration!
 
 In order not to waste time and to provide the most comfortable structure to all readers, we have created two different options. You can find the Quick Start section below, in which you can clone a boilerplate and start building on your own, without diving deep into the base, or you can start from scratch and learn all the underlying concepts, by clicking on the Start from Scratch section. Both sections are ok as long as you know exactly what are your goals at this point. Let’s get started!
 
-
-# Quick Start
+## Quick Start
 
 [The Algebra boilerplate repo](https://github.com/cryptoalgebra/boilerplate) provides those who want to build with our codebase with a basic Hardhat environment with required imports already preloaded for you. You can simply clone it and install the dependencies:
 
@@ -17,11 +18,11 @@ npm install
 
 Then go to the `Local Node with a Polygon Fork` to complete your set-up and start building.
 
-# Start from Scratch
+## Start from Scratch
 
 Node is considered to be one of the most common Javascript execution mechanisms. That means that for our goals, it will provide scripting that we can further use to compile and test our contracts. If you haven’t already done so, install NodeJS and its package manager NPM before the start.
 
-## Set Up Dependencies
+### Set Up Dependencies
 
 Node is one of the most common Javascript runtimes. For our purposes it will provide scripting we can use to compile and test our contracts. If you haven’t already, install NodeJS and its package manager NPM.
 
@@ -33,9 +34,9 @@ Once those dependencies are set up, we can initialize our project:
 $ npm init
 ```
 
-[Hardhat](https://hardhat.org/) 
+[Hardhat](https://hardhat.org/)
 
-This is the Ethereum's development toolset – a vital development environment, providing quite a lot of features, such as Solidity compilation, testing and deployment. All of them are contained in a single convenient wrapper, making it easy to use. We’ll use NPM to add Hardhat to our project: 
+This is the Ethereum's development toolset – a vital development environment, providing quite a lot of features, such as Solidity compilation, testing and deployment. All of them are contained in a single convenient wrapper, making it easy to use. We’ll use NPM to add Hardhat to our project:
 
 ```bash
 $ npm add --save-dev hardhat
@@ -55,7 +56,7 @@ For the next step, we’ll use NPM to add the Algebra contracts, which will allo
 $ npm add @cryptoalgebra/integral-periphery @cryptoalgebra/integral-core
 ```
 
-The Algebra contracts were written using a past version of the solidity compiler. Since we’re building integrations using the Algebra codebase, we have to make Hardhat to use the correct compiler to build these files. Go to the `./hardhat.config.js` file and change the Solidity version to “0.8.20”: 
+The Algebra contracts were written using a past version of the solidity compiler. Since we’re building integrations using the Algebra codebase, we have to make Hardhat to use the correct compiler to build these files. Go to the `./hardhat.config.js` file and change the Solidity version to “0.8.20”:
 
 ```jsx
 // ...
@@ -66,16 +67,15 @@ module.exports = {
 
 Now, we’re done! After all these steps, you should have a functional development environment, allowing you to start building on-chain Algebra integrations. For now, let’s run a quick test to make sure everything is set up just as it should be.
 
-## Creating a Main Contract
+### Creating a Main Contract
 
 To make sure that our environment is set up correctly, we’ll try to compile a basic Swap. For that purpose, create a new file, `./contracts/Swap.sol` and paste the following code into it.
 
-[Single Swaps Contract Guide](./swaps/single-swaps.md)
+[Single Swaps Contract Guide](swaps/single-swaps.md)
 
 ```jsx
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.8.20;
-pragma abicoder v2;
 
 import '@cryptoalgebra/integral-periphery/contracts/interfaces/ISwapRouter.sol';
 import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
@@ -127,11 +127,11 @@ If the environment is compiled properly, you’ll see the message pop up:
 Compiled { x } Solidity files successfully
 ```
 
-# Local Node with a Polygon Fork
+## Local Node with a Polygon Fork
 
-In the processes of building and testing integrations with on-chain protocols, developers might face a major issue: liquidity on the live chain is critical to thoroughly testing their code, but testing against a live network like Polygon can be extremely expensive. 
+In the processes of building and testing integrations with on-chain protocols, developers might face a major issue: liquidity on the live chain is critical to thoroughly testing their code, but testing against a live network like Polygon can be extremely expensive.
 
-Luckily, Hardhat has a great feature that allows developers to run a local Polygon test node that uses a fork of Polygon. This way, it is possible for us to test against simulated liquidity for free. 
+Luckily, Hardhat has a great feature that allows developers to run a local Polygon test node that uses a fork of Polygon. This way, it is possible for us to test against simulated liquidity for free.
 
 As a prerequisite, we’ll need an RPC that supports Forking. Alchemy includes forking in its free tier, so it’s a great place to start.
 
@@ -145,14 +145,13 @@ $ npx hardhat node --fork https://polygon-mainnet.g.alchemy.com/v2{YOUR_API_KEY}
 
 With your local node is running, you are able to use the `--network localhost` flag in tests to direct the Hardhat testing suite to that local host:
 
-
 ```bash
 $ npx hardhat test --network localhost
 ```
 
-# Next Steps
+## Next Steps
 
-Once your development environment is set up, you’re all ready to start building. Enter the Guides section to learn more about the Algebra functions that you can integrate with. Don’t forget to add all contracts (.sol files) to the `./contracts` folder and their subsequent tests to the `./tests` folder. You can then test them against your local forked node by running: 
+Once your development environment is set up, you’re all ready to start building. Enter the Guides section to learn more about the Algebra functions that you can integrate with. Don’t forget to add all contracts (.sol files) to the `./contracts` folder and their subsequent tests to the `./tests` folder. You can then test them against your local forked node by running:
 
 ```bash
 $ npx hardhat test --network localhost

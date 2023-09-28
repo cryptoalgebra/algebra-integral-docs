@@ -1,23 +1,26 @@
 ---
-ID: "5"
-title: "The full contract"
+ID: '5'
+title: The full contract
 ---
+
+# Final contract
 
 Below we give an example of a fully functioning code: a contract that can custody the Algebra NFT positions and manipulate positions and liquidity in them by charging fees, increasing or decreasing liquidity and creating new positions.
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.8.20;
-pragma abicoder v2;
 
 import '@cryptoalgebra/integral-core/contracts/interfaces/IAlgebraPool.sol';
 import '@cryptoalgebra/integral-core/contracts/libraries/TickMath.sol';
+
 import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
 import '@cryptoalgebra/integral-periphery/contracts/interfaces/INonfungiblePositionManager.sol';
 import '@cryptoalgebra/integral-periphery/contracts/base/LiquidityManagement.sol';
+
 import '@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol';
 
-contract LiquidityExamples is IERC721Receiver {
+contract LiquidityExamples is IERC721Receiver, LiquidityManagement {
     address public constant DAI = 0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063;
     address public constant USDC = 0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174;
 
@@ -32,11 +35,14 @@ contract LiquidityExamples is IERC721Receiver {
     }
 
     /// @dev deposits[tokenId] => Deposit
-    mapping(uint256 => Deposit) public deposits;
+    mapping(uint256 tokenId => Deposit) public deposits;
 
     constructor(
-        INonfungiblePositionManager _nonfungiblePositionManager
-    ) {
+        INonfungiblePositionManager _nonfungiblePositionManager,
+        address _factory,
+        address _WMATIC,
+        address _poolDeployer
+    ) PeripheryImmutableState(_factory, _WMATIC, _poolDeployer) {
         nonfungiblePositionManager = _nonfungiblePositionManager;
     }
 

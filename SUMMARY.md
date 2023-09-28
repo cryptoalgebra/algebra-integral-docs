@@ -32,7 +32,7 @@
     * [Setting up your contract](integration-of-algebra-integral-protocol/technical-guides/flashloans/Inheritance-constructors.md)
     * [Calling flash](integration-of-algebra-integral-protocol/technical-guides/flashloans/calling-flash.md)
     * [Flash callback](integration-of-algebra-integral-protocol/technical-guides/flashloans/flash-callback.md)
-    * [Fina contract](integration-of-algebra-integral-protocol/technical-guides/flashloans/final-contract.md)
+    * [Final contract](integration-of-algebra-integral-protocol/technical-guides/flashloans/final-contract.md)
 * [Migration from UniswapV3](integration-of-algebra-integral-protocol/migration-from-uniswapv3.md)
 
 ## Core logic

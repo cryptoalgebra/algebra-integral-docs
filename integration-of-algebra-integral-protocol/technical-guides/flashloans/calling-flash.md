@@ -1,9 +1,11 @@
 ---
-ID: "1"
-title: "Calling Flash"
+ID: '1'
+title: Calling Flash
 ---
 
-## Parameter Structs
+# Calling flash
+
+### Parameter Structs
 
 To call `flash`, the flash parameters for the initial call are required, as well as any other parameters you’d like to pass through to the callback.
 
@@ -29,7 +31,7 @@ The `FlashCallbackData` struct must contain the data we want to send to the call
     }
 ```
 
-## Pool Key
+### Pool Key
 
 From this point, we are starting our function by assigning the appropriate parameters from the `Flashparams` (which we have declared in memory as `params`) to our variable `poolKey`
 
@@ -40,13 +42,13 @@ From this point, we are starting our function by assigning the appropriate param
     }
 ```
 
-The next step is to declare `pool` as type [IAlgebraPool], which allows us to call `flash` on the desired pool contract.
+The next step is to declare `pool` as type IAlgebraPool, which allows us to call `flash` on the desired pool contract.
 
 ```solidity
-        IAlgebraPool pool = IAlgebraPool(PoolAddress.computeAddress(factory, poolKey));
+        IAlgebraPool pool = IAlgebraPool(PoolAddress.computeAddress(poolDeployer, poolKey));
 ```
 
-## Calling Flash
+### Calling Flash
 
 Finally, we call `flash` on the previously declared `pool`. In the last parameter, we abi.encode the `FlashCallbackData`, which will be decoded in the callback and aimed at informing about the next steps of the particular transaction.
 
@@ -88,7 +90,7 @@ The full function:
 function initFlash(FlashParams memory params) external {
         PoolAddress.PoolKey memory poolKey =
             PoolAddress.PoolKey({token0: params.token0, token1: params.token1});
-        IAlgebraPool pool = IAlgebraPool(PoolAddress.computeAddress(factory, poolKey));
+        IAlgebraPool pool = IAlgebraPool(PoolAddress.computeAddress(poolDeployer, poolKey));
         pool.flash(
             address(this),
             params.amount0,

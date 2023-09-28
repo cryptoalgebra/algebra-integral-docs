@@ -1,14 +1,13 @@
 ---
-ID: "3"
-title: "The Final Contract"
+ID: '3'
+title: The Final Contract
 ---
 
-## The Full Contract
+# Final contract
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.8.20;
-pragma abicoder v2;
 
 import '@cryptoalgebra/integral-core/contracts/interfaces/callback/IAlgebraFlashCallback.sol';
 
@@ -22,14 +21,14 @@ import '@cryptoalgebra/integral-periphery/contracts/interfaces/ISwapRouter.sol';
 /// @title Flash contract implementation
 /// @notice An example contract using the Algebra flash function
 contract PairFlash is IAlgebraFlashCallback, PeripheryImmutableState, PeripheryPayments {
-
     ISwapRouter public immutable swapRouter;
 
     constructor(
         ISwapRouter _swapRouter,
         address _factory,
-        address _WMATIC
-    ) PeripheryImmutableState(_factory, _WMATIC) {
+        address _WMATIC,
+        address _poolDeployer
+    ) PeripheryImmutableState(_factory, _WMATIC, _poolDeployer) {
         swapRouter = _swapRouter;
     }
 
@@ -44,7 +43,7 @@ contract PairFlash is IAlgebraFlashCallback, PeripheryImmutableState, PeripheryP
         bytes calldata data
     ) external override {
         FlashCallbackData memory decoded = abi.decode(data, (FlashCallbackData));
-        CallbackValidation.verifyCallback(factory, decoded.poolKey);
+        CallbackValidation.verifyCallback(poolDeployer, decoded.poolKey);
 
         address token0 = decoded.poolKey.token0;
         address token1 = decoded.poolKey.token1;
@@ -128,7 +127,7 @@ contract PairFlash is IAlgebraFlashCallback, PeripheryImmutableState, PeripheryP
     function initFlash(FlashParams memory params) external {
         PoolAddress.PoolKey memory poolKey =
             PoolAddress.PoolKey({token0: params.token0, token1: params.token1});
-        IAlgebraPool pool = IAlgebraPool(PoolAddress.computeAddress(factory, poolKey));
+        IAlgebraPool pool = IAlgebraPool(PoolAddress.computeAddress(poolDeployer, poolKey));
         // recipient of borrowed amounts
         // amount of token0 requested to borrow
         // amount of token1 requested to borrow

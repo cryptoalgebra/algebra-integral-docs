@@ -1,16 +1,18 @@
 ---
-ID: "0"
-title: "Single swaps"
+ID: '0'
+title: Single swaps
 ---
+
+# Single swaps
 
 Swaps are the most common interaction with the Algebra Protocol. The following example displays the way of implementing a single-path swap contract that uses two functions that you create:
 
-- `swapExactInputSingle`
-- `swapExactOutputSingle`
+* `swapExactInputSingle`
+* `swapExactOutputSingle`
 
-The `swapExactOutputSingle`  function is used for performing exact output swaps, which swap a minimum possible amount of the token 1 for a fixed amount of the token 2. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the [ISwapRouter](https://docs.algebra.finance/en/docs/contracts/API-reference-v2.0/periphery/ISwapRouter) interface.
+The `swapExactOutputSingle` function is used for performing exact output swaps, which swap a minimum possible amount of the token 1 for a fixed amount of the token 2. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the ISwapRouter interface.
 
-The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the [ISwapRouter](https://docs.algebra.finance/en/docs/contracts/API-reference-v2.0/periphery/ISwapRouter) interface.
+The `swapExactOutputSingle` function is for performing _exact output_ swaps, which swap a minimum possible amount of one token for a fixed amount of another token. This function uses the `ExactOutputSingleParams` struct and the `exactOutputSingle` function from the ISwapRouter interface.
 
 To make it seem more simple, the example hardcodes the token contract addresses, but as explained below the contract could be modified to change pools and tokens on a per-transaction basis.
 
@@ -18,14 +20,13 @@ When trading from a smart contract, the most important thing that you should rem
 
 **Note:** As always, the swap examples are not production ready code, and are implemented in a simplistic manner for the learning purposes.
 
-## Set Up the Contract
+### Set Up the Contract
 
-Declare the solidity version used to compile the contract, and `abicoder v2` to allow arbitrary nested arrays and structs to be both encoded and decoded in calldata, a feature that is used when executing a swap.
+Declare the solidity version used to compile the contract. If needed (if you are using older versions of solidity) add `abicoder v2` to allow arbitrary nested arrays and structs to be both encoded and decoded in calldata, a feature that is used when executing a swap.
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.8.20;
-pragma abicoder v2;
 ```
 
 Import the two relevant contracts from the npm package installation
@@ -61,7 +62,7 @@ Hardcode the token contract addresses just for the example. In production, you w
     }
 ```
 
-## Exact Input Swaps
+### Exact Input Swaps
 
 The caller must `approve` the contract to withdraw the tokens from the calling address's account to execute a swap. Keep in mind that because our contract is a contract itself and not an extension of the caller (us); we must also approve the Algebra Protocol router contract to use the tokens that our contract will be in possession of after they have been withdrawn from the calling address (us).
 
@@ -69,7 +70,7 @@ Then, transfer the `amount` of Dai from the calling address into our contract, a
 
 ```solidity
     /// @notice swapExactInputSingle swaps a fixed amount of DAI for a maximum possible amount of WMATIC
-    /// using the DAI/WMATIC 0.3% pool by calling `exactInputSingle` in the swap router.
+    /// using the DAI/WMATIC pool by calling `exactInputSingle` in the swap router.
     /// @dev The calling address must approve this contract to spend at least `amountIn` worth of its DAI for this function to succeed.
     /// @param amountIn The exact amount of DAI that will be swapped for WMATIC.
     /// @return amountOut The amount of WMATIC received.
@@ -84,20 +85,20 @@ Then, transfer the `amount` of Dai from the calling address into our contract, a
 
 ```
 
-### Swap Input Parameters
+#### Swap Input Parameters
 
-To execute the swap function, we need to fill the `ExactInputSingleParams` with the necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed in [ISwapRouter](https://docs.algebra.finance/en/docs/contracts/API-reference-v2.0/periphery/ISwapRouter).
+To execute the swap function, we need to fill the `ExactInputSingleParams` with the necessary swap data. These parameters are found in the smart contract interfaces, which can be browsed in ISwapRouter.
 
 A little overview of the parameters:
 
-- `tokenIn` is the contract address of the inbound token
-- `tokenOut` is the contract address of the outbound token
-- `recipient` is the destination address of the outbound token
-- `deadline`: stands for unix time after which a swap will fail, to protect against long-pending transactions and wild swings in prices
-- `amountOutMinimum`: is the parameter we are setting to zero, but this is a significant risk in production. For a real deployment, this value should be calculated using our SDK or an onchain price oracle – it’ll help protect against getting an unusually unreasonable price for a trade due to a front running sandwich or another type of price manipulation.
-- `sqrtPriceLimitX96`: is also a parameter we are setting to zero - which makes it inactive. In production, this value might be used to set the limit for the price the swap will push the pool to – it can help us protect against price impact or for setting up logic in a variety of price-relevant mechanisms.
+* `tokenIn` is the contract address of the inbound token
+* `tokenOut` is the contract address of the outbound token
+* `recipient` is the destination address of the outbound token
+* `deadline`: stands for unix time after which a swap will fail, to protect against long-pending transactions and wild swings in prices
+* `amountOutMinimum`: is the parameter we are setting to zero, but this is a significant risk in production. For a real deployment, this value should be calculated using our SDK or an onchain price oracle – it’ll help protect against getting an unusually unreasonable price for a trade due to a front running sandwich or another type of price manipulation.
+* `sqrtPriceLimitX96`: is also a parameter we are setting to zero - which makes it inactive. In production, this value might be used to set the limit for the price the swap will push the pool to – it can help us protect against price impact or for setting up logic in a variety of price-relevant mechanisms.
 
-### Call the function
+#### Call the function
 
 ```solidity
         // Naively set amountOutMinimum to 0. In production, use an oracle or other data source to choose a safer value for amountOutMinimum.
@@ -118,13 +119,13 @@ A little overview of the parameters:
     }
 ```
 
-## Exact Output Swaps
+### Exact Output Swaps
 
 Exact Output swaps a minimum possible amount of the input token for a fixed amount of the outbound token. It can be seen as a less common swap style – but we find it quite useful in a variety of cases and circumstances.
 
 As this example transfers in the inbound asset in anticipation of the swap, it is possible that some of the inbound tokens will be left over after the swap is executed, which is why we pay it back to the calling address once the swap is completed.
 
-### Call the function
+#### Call the function
 
 ```solidity
 /// @notice swapExactOutputSingle swaps a minimum possible amount of DAI for a fixed amount of WMATIC.
@@ -165,12 +166,11 @@ TransferHelper.safeTransferFrom(DAI, msg.sender, address(this), amountInMaximum)
 
 ```
 
-## A Complete Single Swap Contract
+### A Complete Single Swap Contract
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.8.20;
-pragma abicoder v2;
 
 import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
 import '@cryptoalgebra/integral-periphery/contracts/interfaces/ISwapRouter.sol';
@@ -196,7 +196,7 @@ contract SwapExamples {
     }
 
     /// @notice swapExactInputSingle swaps a fixed amount of DAI for a maximum possible amount of WMATIC
-    /// using the DAI/WMATIC 0.3% pool by calling `exactInputSingle` in the swap router.
+    /// using the DAI/WMATIC pool by calling `exactInputSingle` in the swap router.
     /// @dev The calling address must approve this contract to spend at least `amountIn` worth of its DAI for this function to succeed.
     /// @param amountIn The exact amount of DAI that will be swapped for WMATIC.
     /// @return amountOut The amount of WMATIC received.

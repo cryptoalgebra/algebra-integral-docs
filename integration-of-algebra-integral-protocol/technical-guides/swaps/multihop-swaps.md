@@ -1,16 +1,17 @@
 ---
-ID: "1"
-title: "Multihop swaps"
+ID: '1'
+title: Multihop swaps
 ---
 
-## Setting up the Contract
+# Multihop swaps
 
-Declare the solidity version that will be used to compile the contract, and the `abicoder v2` to allow arbitrary nested arrays and structs to be encoded and decoded in calldata, a feature that is used when completing a swap.
+### Setting up the Contract
+
+Declare the solidity version that will be used to compile the contract. If needed (if you are using older versions of solidity) add `abicoder v2` to allow arbitrary nested arrays and structs to be encoded and decoded in calldata, a feature that is used when completing a swap.
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.8.20;
-pragma abicoder v2;
 ```
 
 Import the two needed contracts from the npm package installation.
@@ -45,19 +46,19 @@ Now, hardcode the token contract addresses for the example. In production, you w
     }
 ```
 
-## Exact Input Multi Hop Swaps
+### Exact Input Multi Hop Swaps
 
 Exact input multi hop swaps will swap a fixed amount on a given input token for the maximum amount possible for a given output, and can include an arbitrary number of intermediary swaps.
 
-### Input Parameters
+#### Input Parameters
 
-- `path`: The path is a sequence of (`tokenAddress - tokenAddress`), which are the variables needed to compute each pool contract address in our sequence of swaps. The multihop swap router code will automatically find the correct pool with these variables, and execute the swap needed within each pool in our sequence.
-- `recipient`: is the destination address of the outbound asset.
-- `deadline`: is the unix time after which a transaction will be reverted, in order to protect against long delays and the increased chance of large price swings therein.
-- `amountIn`: the amount of the inbound asset.
-- `amountOutMin`: the minimum amount of the outbound asset, less than which will cause the transaction to revert. For this example we will set it to 0, in production one will need to use the SDK to quote an expected price, or an on chain price oracle for more advanced manipulation resistant systems.
+* `path`: The path is a sequence of (`tokenAddress - tokenAddress`), which are the variables needed to compute each pool contract address in our sequence of swaps. The multihop swap router code will automatically find the correct pool with these variables, and execute the swap needed within each pool in our sequence.
+* `recipient`: is the destination address of the outbound asset.
+* `deadline`: is the unix time after which a transaction will be reverted, in order to protect against long delays and the increased chance of large price swings therein.
+* `amountIn`: the amount of the inbound asset.
+* `amountOutMin`: the minimum amount of the outbound asset, less than which will cause the transaction to revert. For this example we will set it to 0, in production one will need to use the SDK to quote an expected price, or an on chain price oracle for more advanced manipulation resistant systems.
 
-### Calling the function
+#### Calling the function
 
 ```solidity
     /// @notice swapExactInputMultihop swaps a fixed amount of DAI for a maximum possible amount of WMATIC through an intermediary pool.
@@ -89,19 +90,19 @@ Exact input multi hop swaps will swap a fixed amount on a given input token for 
     }
 ```
 
-## Exact Output Multihop Swap
+### Exact Output Multihop Swap
 
 An exact output swap will trade a variable amount of the input token for a fixed amount of the outbound token. This one can be seen as a less common technique used for multihop swaps. The code for swapping is mostly the same except for one major difference – the Path is encoded backwards, as an exact output swap is executed in reverse order to pass down the necessary variables for the chain of transactions
 
-### Input Parameters
+#### Input Parameters
 
-- `path`: The path is a sequence of `tokenAddress tokenAddress`, encoded in reverse order, which are the variables needed to compute each pool contract address in our sequence of swaps. This way, the multihop swap router code will automatically find the correct pool with these variables, and execute the swap needed within each pool in our sequence.
-- `recipient`: the destination address of the outbound asset.
-- `deadline`: the unix time after which a transaction will be reverted, to protect against long delays and the increased chance of wild price swings therein. 
-- `amountOut`: The desired amount of WMATIC.
-- `amountInMaximum`: The maximum amount of DAI willing to be swapped for the specified amountOut of WMATIC.
+* `path`: The path is a sequence of `tokenAddress tokenAddress`, encoded in reverse order, which are the variables needed to compute each pool contract address in our sequence of swaps. This way, the multihop swap router code will automatically find the correct pool with these variables, and execute the swap needed within each pool in our sequence.
+* `recipient`: the destination address of the outbound asset.
+* `deadline`: the unix time after which a transaction will be reverted, to protect against long delays and the increased chance of wild price swings therein.
+* `amountOut`: The desired amount of WMATIC.
+* `amountInMaximum`: The maximum amount of DAI willing to be swapped for the specified amountOut of WMATIC.
 
-### Calling the function
+#### Calling the function
 
 ```solidity
     /// @notice swapExactOutputMultihop swaps a minimum possible amount of DAI for a fixed amount of WMATIC through an intermediary pool.
@@ -141,12 +142,11 @@ An exact output swap will trade a variable amount of the input token for a fixed
     }
 ```
 
-## The Full Contract
+### The Full Contract
 
 ```solidity
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity =0.8.20;
-pragma abicoder v2;
 
 import '@cryptoalgebra/integral-periphery/contracts/libraries/TransferHelper.sol';
 import '@cryptoalgebra/integral-periphery/contracts/interfaces/ISwapRouter.sol';

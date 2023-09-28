@@ -1,10 +1,11 @@
 ---
-ID: "2"
-title: "Flash Callback"
+ID: '2'
+title: Flash Callback
 ---
 
+# Flash callback
 
-## Setting Up The Callback
+### Setting Up The Callback
 
 In the following part, we will override the flash callback with our custom logic to execute the desired swaps and pay the profit to the original `msg.sender`.
 
@@ -18,7 +19,7 @@ Declare the `algebraFlashCallback` function and override it.
     ) external override {
 ```
 
-Declare a variable `decoded` in memory and assign it to the 
+Declare a variable `decoded` in memory and assign it to the
 
 [**Decoded data**](https://docs.soliditylang.org/en/v0.7.6/units-and-global-variables.html?highlight=abi.decode#abi-encoding-and-decoding-functions)
 
@@ -31,7 +32,7 @@ It was previously encoded into the calldata.
 Each callback must be checked and verified to make sure that the callback comes from a real pool. Without this, the pool contract will be vulnerable to an attack through an EOA manipulating the callback function.
 
 ```solidity
-        CallbackValidation.verifyCallback(factory, decoded.poolKey);
+        CallbackValidation.verifyCallback(poolDeployer, decoded.poolKey);
 ```
 
 Assign local variables of type `address` as `token0` and `token1` to allow the router to interact with tokens from flash.
@@ -51,7 +52,7 @@ Set a minimum out amount for both upcoming swaps, so that the following swaps wi
         uint256 amount0Min = LowGasSafeMath.add(decoded.amount0, fee0);
 ```
 
-## Initiating A Swap
+### Initiating A Swap
 
 Call the first of two swaps, calling `exactInputSingle` on the router interface contract.
 
@@ -99,7 +100,7 @@ uint256 amountOut1 =
             );
 ```
 
-## Paying back the pool
+### Paying back the pool
 
 To pay the original pool back for the flash transaction, calculate the balance due to it in the first place, and then approve the router to transfer the tokens in our contract back to the pool.
 
@@ -112,8 +113,6 @@ TransferHelper.safeApprove(token1, address(this), amount1Owed);
 ```
 
 If there’s any balance due to the token, use simple logic to call pay.
-
-[Pay](https://docs.algebra.finance/en/docs/contracts/API-reference/periphery/PeripheryPayments#pay)
 
 Remember that the callback function is being called by the pool itself, which is why we can call `pay` despite the function being marked `internal`.
 
@@ -139,7 +138,7 @@ Send the profits to the `payer`: the original `msg.sender` of the `initFlash` fu
         }
 ```
 
-# The full function
+## The full function
 
 ```solidity
     function algebraFlashCallback(
@@ -148,7 +147,7 @@ Send the profits to the `payer`: the original `msg.sender` of the `initFlash` fu
         bytes calldata data
     ) external override {
         FlashCallbackData memory decoded = abi.decode(data, (FlashCallbackData));
-        CallbackValidation.verifyCallback(factory, decoded.poolKey);
+        CallbackValidation.verifyCallback(poolDeployer, decoded.poolKey);
 
         address token0 = decoded.poolKey.token0;
         address token1 = decoded.poolKey.token1;
