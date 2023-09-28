@@ -5,6 +5,9 @@
 ## Integration of Algebra Integral protocol
 
 * [Specification and description of contracts](integration-of-algebra-integral-protocol/specification-and-description-of-contracts.md)
+* [Contracts API](integration-of-algebra-integral-protocol/contracts-api/README.md)
+  * [Algebra Pool](integration-of-algebra-integral-protocol/contracts-api/Core/AlgebraPool.md)
+  * [Algebra Factory](integration-of-algebra-integral-protocol/contracts-api/Core/AlgebraFactory.md)
 * [Interaction with pools](integration-of-algebra-integral-protocol/interaction-with-pools/README.md)
   * [Getting data from pools](integration-of-algebra-integral-protocol/interaction-with-pools/getting-data-from-pools.md)
 * [Subgraphs and analytics](integration-of-algebra-integral-protocol/subgraphs-and-analytics/README.md)
