@@ -28,11 +28,25 @@ struct GlobalState {
 GlobalState public override globalState;
 ```
 
-So you can get price in this way:
+And the safest way to get price and other data is to use special getter function:
+
+<pre class="language-solidity"><code class="lang-solidity">/// @dev safe from read-only reentrancy getter function
+<strong>function safelyGetStateOfAMM() external view override returns (
+</strong>    uint160 sqrtPrice, 
+    int24 tick, 
+    uint16 lastFee, 
+    uint8 pluginConfig, 
+    uint128 activeLiquidity, 
+    int24 nextTick, 
+    int24 previousTick
+)
+</code></pre>
 
 ```solidity
-(uint160 price, , , , , ) = IAlgebraPool(poolAddress).globalState();
+(uint160 price, , , , , ,) = IAlgebraPool(poolAddress).safelyGetStateOfAMM();
 ```
+
+<mark style="color:orange;">You can get price directly from</mark> <mark style="color:orange;"></mark><mark style="color:orange;">`globalState`</mark> <mark style="color:orange;"></mark><mark style="color:orange;">struct, but beware of read-only reentrancy, if you are doing it on-chain!</mark>
 
 Next, it is important to understand what exactly is meant by price in liquidity pools. The pool stores the **square root** of the price of token0 relative to token1 in format [`Q64.96`](https://en.wikipedia.org/wiki/Q\_\(number\_format\)). So, in pseudocode, price value in pool can be expressed as:
 
@@ -58,7 +72,7 @@ If you need to get the average price in a pool for a certain period of time, the
 
 ### How to get actual execution price for swap?
 
-To do this, you can use a special peripheral contract called Quoter. For example, here is description of `quoteExactInputSingle`:
+To do this, you can use a special peripheral contract called [Quoter](../specification-and-description-of-contracts/quoter.md). For example, here is description of `quoteExactInputSingle`:
 
 ```solidity
 /// @inheritdoc IQuoter
