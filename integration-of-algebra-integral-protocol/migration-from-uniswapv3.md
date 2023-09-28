@@ -97,7 +97,10 @@ Unlike tickBitmap, tickTable does not take into account tickspacing - when defin
 
 In addition, Algebra Integral pool exposes `prevTickGlobal()` and `nextTickGlobal()`, which make it possible to find out the previous and next active tick without using a bitmap.
 
+### Custom errors
 
+Unlike UniswapV3, Algebra Integral actively uses custom errors, since they are cheaper and more economical.\
+You can find a list of custom errors and their selectors here: [#errors](specification-and-description-of-contracts/algebrapool.md#errors "mention")
 
 ## Periphery
 
@@ -106,7 +109,10 @@ The periphery almost completely corresponds to the periphery of UniswapV3, with 
 * Use of Solidity 0.8.20 in contracts (>=0.7.6 in interfaces)
 * No need to pass fee level anywhere
 * Quoter additionaly returns the fee value that will be used during the swap
+* QuoterV2 additionaly returns both of amountIn and amountOut
 * Additional function `exactInputSingleSupportingFeeOnTransferTokens` in SwapRouter contract
+* TickLens has additional functions to simplify fetching of ticks
+* NonfungiblePositionManager contains additional functionality for convenient integration with farming (liquidity incentive program)
 
 
 
