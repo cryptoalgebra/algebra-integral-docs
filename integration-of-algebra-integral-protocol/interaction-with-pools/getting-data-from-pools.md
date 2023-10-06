@@ -6,6 +6,48 @@ The order of the tokens is determined in such a way that:
 
 &#x20;`address(token0) < address(token1)`
 
+## How to get address of liquidity pool?
+
+To obtain the liquidity pool address, you can use one of the following methods:
+
+**1. Use `poolByPair` mapping in AlgebraFactory**
+
+```solidity
+/// @inheritdoc IAlgebraFactory
+mapping(address tokenA => mapping(address tokenB => address pool)) public poolByPair;
+```
+
+Documentation: [#poolbypair](../specification-and-description-of-contracts/algebrafactory.md#poolbypair "mention")
+
+Token addresses must be passed as parameters (in any order). If the pool exists, you will get its address. If such a pool has not yet been created, you will receive `address(0)`.
+
+**2. Use `computePoolAdress` function in AlgebraFactory**
+
+```solidity
+/// @inheritdoc IAlgebraFactory
+function computePoolAddress(address token0, address token1) public view returns (address pool);
+```
+
+Documentation: [#computepooladdress](../specification-and-description-of-contracts/algebrafactory.md#computepooladdress "mention")
+
+Token addresses must be passed as parameters ( `address(token0)` < `address(token1)` ). You will get address of pool even if it hasn't been created yet.
+
+**3. Calculate pool address using `create2` mechanism**
+
+The previous options require making an external call to the AlgebraFactory contract. A cheaper option in terms of gas would be to calculate the address yourself. To do this, you can use the same logic as in method `computePoolAddress`:
+
+```solidity
+function computePoolAddress(address token0, address token1) public view returns (address pool) {
+  pool = address(uint160(uint256(keccak256(abi.encodePacked(hex'ff', poolDeployer, keccak256(abi.encode(token0, token1)), POOL_INIT_CODE_HASH)))));
+}
+```
+
+You need to know `POOL_INIT_CODE_HASH` constant: you can get it from AlgebraFactory contract [#pool\_init\_code\_hash](../specification-and-description-of-contracts/algebrafactory.md#pool\_init\_code\_hash "mention").
+
+It is important to note that the calculation uses the address not of the AlgebraFactory, but of the separate pool deployer contract (`poolDeployer`), you also can get this constant from AlgebraFactory contract [#pooldeployer](../specification-and-description-of-contracts/algebrafactory.md#pooldeployer "mention").
+
+Also, important to remember that it is important to maintain the order of the tokens: address of token0 must be less than address of token1 (`address(token0)` < `address(token1)`)
+
 ## Price
 
 ### How to get current price in pool?
@@ -46,6 +88,8 @@ And the safest way to get price and other data is to use special getter function
 (uint160 price, , , , , ,) = IAlgebraPool(poolAddress).safelyGetStateOfAMM();
 ```
 
+[#safelygetstateofamm](../specification-and-description-of-contracts/algebrapool.md#safelygetstateofamm "mention")
+
 <mark style="color:orange;">You can get price directly from</mark> <mark style="color:orange;"></mark><mark style="color:orange;">`globalState`</mark> <mark style="color:orange;"></mark><mark style="color:orange;">struct, but beware of read-only reentrancy, if you are doing it on-chain!</mark>
 
 Next, it is important to understand what exactly is meant by price in liquidity pools. The pool stores the **square root** of the price of token0 relative to token1 in format [`Q64.96`](https://en.wikipedia.org/wiki/Q\_\(number\_format\)). So, in pseudocode, price value in pool can be expressed as:
@@ -85,5 +129,7 @@ function quoteExactInputSingle(
 ...
 }
 ```
+
+[quoter.md](../specification-and-description-of-contracts/quoter.md "mention")
 
 You can do a **static call** to this method _(and it is better not to use it on-chain due to gas costs)_. As a result, the number of tokens at the output and the real pool fee will be obtained.
