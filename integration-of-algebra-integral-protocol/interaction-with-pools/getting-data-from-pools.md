@@ -48,6 +48,8 @@ It is important to note that the calculation uses the address not of the Algebra
 
 Also, important to remember that it is important to maintain the order of the tokens: address of token0 must be less than address of token1 (`address(token0)` < `address(token1)`)
 
+<mark style="color:orange;">Note: pool address calculation can be different in some blockchains (like zkSync Era).</mark>
+
 ## Price
 
 ### How to get current price in pool?

@@ -28,6 +28,24 @@ Algebra Integral creates one pool for each pair of tokens. Because of this, dete
 * No need to pass fee value in `SwapRouter` or `NonfungiblePositionManager`
 * No need to pass fee in `createPool` function of AlgebraFactory
 
+## Pool address calculation (`create2`)
+
+To calculate address of Algebra Integral liquidity pool, you can use the same logic as in method `computePoolAddress` of AlgebraFactory contract:
+
+```solidity
+function computePoolAddress(address token0, address token1) public view returns (address pool) {
+  pool = address(uint160(uint256(keccak256(abi.encodePacked(hex'ff', poolDeployer, keccak256(abi.encode(token0, token1)), POOL_INIT_CODE_HASH)))));
+}
+```
+
+You need to know `POOL_INIT_CODE_HASH` constant: you can get it from AlgebraFactory contract [#pool\_init\_code\_hash](specification-and-description-of-contracts/algebrafactory.md#pool\_init\_code\_hash "mention").
+
+It is important to note that unlike UniswapV3 we use the address not of the AlgebraFactory, but of the separate pool deployer contract (`poolDeployer`), you also can get this constant from AlgebraFactory contract [#pooldeployer](specification-and-description-of-contracts/algebrafactory.md#pooldeployer "mention").
+
+Also, important to remember that it is important to maintain the order of the tokens: address of token0 must be less than address of token1 (`address(token0)` < `address(token1)`)
+
+<mark style="color:orange;">Note: pool address calculation can be different in some blockchains (like zkSync Era).</mark>
+
 ## AlgebraPool
 
 The Algebra Integral liquidity pool is based on the same math and the same formulas as the UniswapV3 pool. At the same time, the internal logic differs in many details, which leads to differences in the external interfaces.
