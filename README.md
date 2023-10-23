@@ -4,6 +4,8 @@ This documentation is dedicated to the new version of Algebra - Algebra Integral
 
 
 
+[Audits ](audits.md)- section with inforamtion about security audits
+
 [Intregration of Algebra pools](broken-reference) - section devoted to integration and interaction with Algebra Integral pools.&#x20;
 
 [Core logic](broken-reference) - section describing the internal logic of Algebra Integral core (pools and pool factory).&#x20;

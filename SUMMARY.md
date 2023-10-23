@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Intro](README.md)
+* [Audits](audits.md)
 
 ## Integration of Algebra Integral protocol
 
