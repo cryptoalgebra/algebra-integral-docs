@@ -26,7 +26,7 @@ $$\Delta \sqrt P =  \Delta Y / L$$
 
 $$\Delta 1 / \sqrt P = \Delta X / L$$
 
-Где $$X$$ is the balance change of token0 at the pool, and $$Y$$is the balance change of token1 at the pool. Thus, a change in the price root "generates" the movement of tokens in and out of the pool. Basically, swap can be described as a process of "movement" of the price to some value.
+Where $$X$$ is the balance change of token0 at the pool, and $$Y$$is the balance change of token1 at the pool. Thus, a change in the price root "generates" the movement of tokens in and out of the pool. Basically, swap can be described as a process of "movement" of the price to some value.
 
 However, the peculiarity of AMM Algebra is concentrated liquidity - in the course of price movement liquidity can increase or decrease due to crossing of position boundaries of liquidity providers. For this purpose, [a tick mechanism](ticks/) is implemented\
 
